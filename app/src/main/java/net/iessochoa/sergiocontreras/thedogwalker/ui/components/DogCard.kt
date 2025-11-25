@@ -33,13 +33,23 @@ fun DogCard(
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier.fillMaxWidth().padding(8.dp).clickable { onDogClick(dog.id) },
+        modifier = modifier.fillMaxWidth().padding(8.dp)
+            .clickable {
+            //TODO: Evento de click
+            },
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
-        Row(modifier = Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
+        Row(
+            modifier = Modifier.padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             // Placeholder para foto
             Box(modifier = Modifier.size(60.dp)) {
-                Image(painterResource(dog.imageRes), "Dog profile pic", Modifier.fillMaxSize())
+                Image(
+                    painterResource(dog.imageRes),
+                    contentDescription = "Dog profile pic",
+                    Modifier.fillMaxSize()
+                )
             }
             Spacer(Modifier.width(16.dp))
             Column(modifier = Modifier.weight(1f)) {
@@ -52,4 +62,3 @@ fun DogCard(
     }
 }
 
-fun onDogClick(id: Any) {}

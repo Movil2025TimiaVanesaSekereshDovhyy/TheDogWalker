@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import net.iessochoa.sergiocontreras.thedogwalker.ui.theme.TheDogWalkerTheme
 
@@ -20,7 +21,7 @@ fun StatusIcon(
     type: String,
     clickable: Boolean,
     onToggle: (String) -> Unit,
-    size: Int //androidx.compose.ui.unit.Dp
+    size: Dp
 ) {
     val color = if (isDone) Color.Green else Color.Gray
     Icon(
@@ -28,7 +29,7 @@ fun StatusIcon(
         contentDescription = null,
         tint = color,
         modifier = Modifier
-            .size(size.dp)
+            .size(size)
             .then(if (clickable) Modifier.clickable { onToggle(type) } else Modifier)
     )
 }
@@ -43,7 +44,7 @@ private fun PreviewStatusIcon() {
             type = "Call",
             clickable = true,
             onToggle = {},
-            size = 24
+            size = 24.dp
         )
     }
 }

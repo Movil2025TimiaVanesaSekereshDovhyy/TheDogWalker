@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import net.iessochoa.sergiocontreras.thedogwalker.R
 import net.iessochoa.sergiocontreras.thedogwalker.model.Dog
@@ -17,7 +18,7 @@ fun StatusIconsRow(
     dog: Dog,
     clickable: Boolean,
     onToggle: (String) -> Unit = {},
-    iconSize: Int = 24
+    iconSize: Dp = 24.dp
 ) {
 
     val iconWalk = ImageVector.vectorResource(R.drawable.sound_detection_dog_barking_24px)
