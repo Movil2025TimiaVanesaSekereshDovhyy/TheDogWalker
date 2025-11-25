@@ -7,7 +7,7 @@ object DogRepository {
     // "Base de datos" en memoria
     private val localDogs = mutableListOf(
         Dog(1, "Doge", "Shiba Inu"),
-        Dog(2, "Rex", "Pastor Alemán"),
+        Dog(2, "Rex", "German Shepherd"),
         Dog(3, "Cheems", "Shiba Inu"),
         Dog(4, "Lassie", "Rough Collie"),
         Dog(5, "Hachiko", "Akita Inu")
