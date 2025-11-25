@@ -1,5 +1,6 @@
 package net.iessochoa.sergiocontreras.thedogwalker.model
 
+import androidx.annotation.DrawableRes
 import net.iessochoa.sergiocontreras.thedogwalker.R
 
 /**
@@ -19,5 +20,5 @@ data class Dog(
     val isWalked: Boolean = false,
     val hasPooped: Boolean = false,
     val hasPeed: Boolean = false,
-    val imageRes: Int = R.drawable.ic_launcher_foreground
+    @param:DrawableRes val imageRes: Int = R.drawable.ic_launcher_foreground
 )

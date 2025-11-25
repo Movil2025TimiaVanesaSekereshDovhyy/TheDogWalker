@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import net.iessochoa.sergiocontreras.thedogwalker.model.Dog
+import net.iessochoa.sergiocontreras.thedogwalker.ui.components.DogCard
 import net.iessochoa.sergiocontreras.thedogwalker.ui.components.StatusIconsRow
 import net.iessochoa.sergiocontreras.thedogwalker.ui.theme.Typography
 
@@ -35,22 +36,7 @@ fun DogListScreen(
 ) {
     LazyColumn(contentPadding = PaddingValues(16.dp), modifier = modifier) {
         items(dogs) { dog ->
-            Card(
-                modifier = Modifier.fillMaxWidth().padding(8.dp).clickable { onDogClick(dog.id) },
-                elevation = CardDefaults.cardElevation(4.dp)
-            ) {
-                Row(modifier = Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-                    // Placeholder para foto
-                    Box(modifier = Modifier.size(60.dp)) { Icon(Icons.Default.Face, null, Modifier.fillMaxSize()) }
-                    Spacer(Modifier.width(16.dp))
-                    Column(modifier = Modifier.weight(1f)) {
-                        Text(text = dog.name, style = Typography.bodyMedium)
-                        Text(text = dog.breed, style = Typography.bodyMedium)
-                    }
-                    // Iconos de estado (Solo lectura)
-                    StatusIconsRow(dog, clickable = false)
-                }
-            }
+            DogCard(dog)
         }
     }
 }
