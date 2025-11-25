@@ -18,7 +18,6 @@ import androidx.compose.material.icons.filled.Face
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,8 +28,12 @@ import net.iessochoa.sergiocontreras.thedogwalker.ui.components.StatusIconsRow
 import net.iessochoa.sergiocontreras.thedogwalker.ui.theme.Typography
 
 @Composable
-fun DogListScreen(dogs: List<Dog>, onDogClick: (Int) -> Unit) {
-    LazyColumn(contentPadding = PaddingValues(16.dp)) {
+fun DogListScreen(
+    dogs: List<Dog>,
+    onDogClick: (Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    LazyColumn(contentPadding = PaddingValues(16.dp), modifier = modifier) {
         items(dogs) { dog ->
             Card(
                 modifier = Modifier.fillMaxWidth().padding(8.dp).clickable { onDogClick(dog.id) },
