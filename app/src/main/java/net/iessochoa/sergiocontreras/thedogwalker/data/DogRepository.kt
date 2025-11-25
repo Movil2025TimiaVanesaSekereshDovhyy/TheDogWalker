@@ -24,7 +24,7 @@ object DogRepository {
         return localDogs.find { it.id == id }
     }
 
-    // Actualizar estado (lógica movida del VM al Repo)
+    // Lógica persistencia
     fun updateDogStatus(id: Int, type: String) {
         val index = localDogs.indexOfFirst { it.id == id }
         if (index != -1) {
