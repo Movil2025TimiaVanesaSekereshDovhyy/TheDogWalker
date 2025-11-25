@@ -1,5 +1,7 @@
 package net.iessochoa.sergiocontreras.thedogwalker.model
 
+import net.iessochoa.sergiocontreras.thedogwalker.R
+
 /**
  * Representa un perro con su información.
  *
@@ -16,5 +18,6 @@ data class Dog(
     val breed: String,
     val isWalked: Boolean = false,
     val hasPooped: Boolean = false,
-    val hasPeed: Boolean = false
+    val hasPeed: Boolean = false,
+    val imageRes: Int = R.drawable.ic_launcher_foreground
 )
