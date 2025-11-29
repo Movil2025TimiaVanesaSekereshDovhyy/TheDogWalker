@@ -45,6 +45,7 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.ui)
     val nav_version = "2.9.6"
 
     // Jetpack Compose integration
