@@ -51,7 +51,9 @@ fun DogWalkerApp(
             DogWalkerTopAppBar(
                 title = currentScreenTitle,
                 canNavigateBack = canNavigateBack,
-                navigateUp = { navController.navigateUp() }
+                navigateUp = {
+                    navController.navigateUp()
+                }
             )
         }
     ) { innerPadding ->

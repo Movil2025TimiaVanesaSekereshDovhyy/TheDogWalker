@@ -11,7 +11,7 @@ import net.iessochoa.sergiocontreras.thedogwalker.model.Dog
 class DogWalkerViewModel : ViewModel() {
     // 1. ESTADO INTERNO (MutableStateFlow)
     // Inicializamos con la lista vacía o cargamos datos iniciales
-    private val _uiState = MutableStateFlow(DogWalkerUiState(dogs = DogRepository.getAllDogs()))
+    private val _uiState = MutableStateFlow(DogWalkerUiState())
 
     // 2. ESTADO PÚBLICO (StateFlow - Solo lectura)
     // Exponemos el flujo para que la UI se suscriba sin poder tocar la olla
@@ -21,8 +21,7 @@ class DogWalkerViewModel : ViewModel() {
     // Funciones que la UI llamará cuando el comensal (usuario) interactúe
 
     // Ejemplo: El usuario hace clic en una receta de la lista
-    fun onDogSelected(id: Int) {
-        val dog = DogRepository.getDogById(id)
+    fun onDogSelected(dog: Dog) {
         _uiState.update { currentState ->
             currentState.copy(selectedDog = dog)
         }
@@ -33,15 +32,21 @@ class DogWalkerViewModel : ViewModel() {
         _uiState.update { it.copy(selectedDog = null) }
     }
 
-    fun onToggleStatus(type: String){
-        val selected = _uiState.value.selectedDog ?: return
-        DogRepository.updateDogStatus(selected.id, type) //Se llama al Repository y se actualiza el perro
-        val updatedDog = DogRepository.getDogById(selected.id) //Perro actualizado
-        _uiState.update {
-            it.copy(
-                dogs = DogRepository.getAllDogs(),
-                selectedDog = updatedDog
+    fun onToggleSelected(type: String) {
+        _uiState.update { currentState ->
+
+            var newDog = currentState.selectedDog
+
+            newDog = when (type) {
+                "walk" -> newDog!!.copy(isWalked = true)
+                "pee" -> newDog!!.copy(hasPeed = true)
+                else -> newDog!!.copy(hasPooped = true)
+            }
+
+            currentState.copy(
+                selectedDog = newDog
             )
+
         }
     }
 

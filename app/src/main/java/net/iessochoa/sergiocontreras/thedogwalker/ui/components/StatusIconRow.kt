@@ -8,10 +8,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import net.iessochoa.sergiocontreras.thedogwalker.R
+import net.iessochoa.sergiocontreras.thedogwalker.data.DogRepository
 import net.iessochoa.sergiocontreras.thedogwalker.model.Dog
+import net.iessochoa.sergiocontreras.thedogwalker.ui.theme.TheDogWalkerTheme
 
 @Composable
 fun StatusIconsRow(
@@ -31,5 +34,19 @@ fun StatusIconsRow(
         StatusIcon(iconPee, dog.isWalked, "walk", clickable, onToggle, iconSize)
         Spacer(Modifier.width(8.dp))
         StatusIcon(iconPoo, dog.isWalked, "walk", clickable, onToggle, iconSize)
+    }
+}
+
+@Preview(showBackground=true)
+@Composable
+private fun StatusIconsRowPreview() {
+    val previewDog = DogRepository.getDogById(1)!!
+
+    TheDogWalkerTheme {
+        StatusIconsRow (
+            dog = previewDog,
+            clickable = false,
+            onToggle = {}
+        )
     }
 }

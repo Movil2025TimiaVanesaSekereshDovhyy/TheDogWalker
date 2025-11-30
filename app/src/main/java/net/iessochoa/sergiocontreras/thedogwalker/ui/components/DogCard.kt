@@ -30,12 +30,14 @@ import net.iessochoa.sergiocontreras.thedogwalker.ui.theme.Typography
 @Composable
 fun DogCard(
     dog: Dog,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onDogClicked: (Dog) -> Unit
 ) {
     Card(
         modifier = modifier.fillMaxWidth().padding(8.dp)
             .clickable {
             //TODO: Evento de click
+                onDogClicked(dog)
             },
         elevation = CardDefaults.cardElevation(4.dp)
     ) {

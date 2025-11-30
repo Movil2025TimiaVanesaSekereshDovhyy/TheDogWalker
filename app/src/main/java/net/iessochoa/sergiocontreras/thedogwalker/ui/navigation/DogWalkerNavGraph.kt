@@ -1,6 +1,5 @@
 package net.iessochoa.sergiocontreras.thedogwalker.ui.navigation
 
-import android.R.attr.type
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -9,6 +8,8 @@ import androidx.navigation.compose.composable
 import net.iessochoa.sergiocontreras.thedogwalker.ui.DogWalkerViewModel
 import net.iessochoa.sergiocontreras.thedogwalker.ui.screens.DogDetailScreen
 import net.iessochoa.sergiocontreras.thedogwalker.ui.screens.DogListScreen
+import androidx.compose.runtime.collectAsState
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 
 //PASO 3: El navHost roto a propósito para practicar
@@ -25,15 +26,14 @@ fun DogWalkerNavGraph(
         modifier = modifier
     ) {
         // --- PANTALLA 1: LISTA ---
-        composable(DogListDestination.route) {
-            val uiState = viewModel.uiState.value
+        composable(route = DogListDestination.route) {
             DogListScreen(
                 // Pasamos el ViewModel o el estado necesario
-                dogs = uiState.dogs,
+                viewModel = viewModel,
                 // Evento de navegación: Al hacer click en una receta...
-                onDogClick = { id ->
+                onDogClicked = { dog ->
                     // 1. Guardamos la selección en el ViewModel (Shared State)
-                    viewModel.onDogSelected(id)
+                    viewModel.onDogSelected(dog)
 
                     // 2. Navegamos al detalle (sin pasar argumentos complejos, el VM ya sabe cuál es)
                     navController.navigate(DogDetailDestination.route)
@@ -43,14 +43,12 @@ fun DogWalkerNavGraph(
 
         // --- PANTALLA 2: DETALLE ---
         composable(route = DogDetailDestination.route) {
-                val uiState = viewModel.uiState.value
+            DogDetailScreen(
                 // Al usar el MISMO viewModel, esta pantalla ya sabe qué receta se seleccionó
-                uiState.selectedDog?.let { dog ->
-                    DogDetailScreen(
-                        dog = dog,
-                        onToggleStatus = { type -> viewModel.onToggleStatus(type)}
-                    )
-                }
+                viewModel = viewModel,
+                // Evento para volver atrás
+                onBack = { navController.popBackStack() }
+            )
         }
     }
 }
