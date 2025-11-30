@@ -31,9 +31,9 @@ fun StatusIconsRow(
     Row {
         StatusIcon(iconWalk, dog.isWalked, "walk", clickable, onToggle, iconSize)
         Spacer(Modifier.width(8.dp))
-        StatusIcon(iconPee, dog.isWalked, "walk", clickable, onToggle, iconSize)
+        StatusIcon(iconPee, dog.hasPeed, "pee", clickable, onToggle, iconSize)
         Spacer(Modifier.width(8.dp))
-        StatusIcon(iconPoo, dog.isWalked, "walk", clickable, onToggle, iconSize)
+        StatusIcon(iconPoo, dog.hasPooped, "poop", clickable, onToggle, iconSize)
     }
 }
 

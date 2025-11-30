@@ -33,21 +33,20 @@ class DogWalkerViewModel : ViewModel() {
     }
 
     fun onToggleSelected(type: String) {
-        _uiState.update { currentState ->
+        val selected = _uiState.value.selectedDog ?: return
 
-            var newDog = currentState.selectedDog
+        // Actualizamos en el repositorio
+        DogRepository.updateDogStatus(selected.id, type)
 
-            newDog = when (type) {
-                "walk" -> newDog!!.copy(isWalked = true)
-                "pee" -> newDog!!.copy(hasPeed = true)
-                else -> newDog!!.copy(hasPooped = true)
-            }
+        // Obtenemos el perro actualizado
+        val updatedDog = DogRepository.getDogById(selected.id)
 
-            currentState.copy(
-                selectedDog = newDog
+        // Refrescamos tanto el perro seleccionado como la lista completa
+        _uiState.update {
+            it.copy(
+                selectedDog = updatedDog,
+                dogs = DogRepository.getAllDogs()
             )
-
         }
     }
-
 }
