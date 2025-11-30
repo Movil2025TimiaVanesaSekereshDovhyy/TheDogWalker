@@ -21,9 +21,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import net.iessochoa.sergiocontreras.thedogwalker.R
 import net.iessochoa.sergiocontreras.thedogwalker.data.DogRepository
-import net.iessochoa.sergiocontreras.thedogwalker.ui.navigation.MyRecipesNavHost
-import net.iessochoa.sergiocontreras.thedogwalker.ui.navigation.RecipeDetailDestination
-import net.iessochoa.sergiocontreras.thedogwalker.ui.navigation.RecipeListDestination
+import net.iessochoa.sergiocontreras.thedogwalker.ui.navigation.DogDetailDestination
+import net.iessochoa.sergiocontreras.thedogwalker.ui.navigation.DogListDestination
+import net.iessochoa.sergiocontreras.thedogwalker.ui.navigation.DogWalkerNavGraph
 import net.iessochoa.sergiocontreras.thedogwalker.ui.screens.DogListScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,8 +38,8 @@ fun DogWalkerApp(
 
     // Lógica para decidir qué título mostrar según la ruta donde estemos
     val currentScreenTitle = when (currentRoute) {
-        RecipeListDestination.route -> stringResource(RecipeListDestination.titleRes)
-        RecipeDetailDestination.route -> stringResource(RecipeDetailDestination.titleRes)
+        DogListDestination.route -> stringResource(DogListDestination.titleRes)
+        DogDetailDestination.route -> stringResource(DogDetailDestination.titleRes)
         else -> stringResource(R.string.app_name)
     }
 
@@ -56,7 +56,7 @@ fun DogWalkerApp(
         }
     ) { innerPadding ->
         // Aquí llamamos a nuestro NavHost personalizado
-        MyRecipesNavHost(
+        DogWalkerNavGraph(
             navController = navController,
             viewModel = viewModel,
             modifier = Modifier.padding(innerPadding)
