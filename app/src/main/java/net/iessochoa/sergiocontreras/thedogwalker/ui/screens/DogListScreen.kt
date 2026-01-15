@@ -25,7 +25,10 @@ fun DogListScreen(
 
     LazyColumn(contentPadding = PaddingValues(16.dp), modifier = modifier) {
         items(dogs) { dog ->
-            DogCard(dog, onDogClicked = onDogClicked)
+            DogCard(
+                dog,
+                onDogClicked = onDogClicked
+            )
         }
     }
 }
